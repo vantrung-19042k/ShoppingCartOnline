@@ -1,0 +1,50 @@
+﻿@using ShoppingCartOnline.Models;
+@model IEnumerable<LoaiSanPham>
+
+<ul class="menuChange">
+    @foreach(var item in Model)
+    {
+        <li class="item1">
+            <a href="@Url.Action("SanPhamTheoLoai", "SanPham", new {MaLoaiSP=item.MaLoaiSP})">@item.TenLoai</a>
+        </li>
+    }
+</ul>
+
+<style>
+    .menuChange {
+        width: auto;
+        height: auto;
+        padding: 0;
+        list-style: none;
+        margin: 1.5em 0;
+    }
+
+    .menuChange > li > a {
+        width: 100%;
+        margin: 0.3em 0;
+        display: inline-block;
+        position: relative;
+        color: #000;
+        font-size: 1.1em;
+        text-decoration: none;
+    }
+
+    .menuChange > li > a:hover {
+        color: #EF5F21;
+    }
+
+    .menuChange ul li a {
+        width: 100%;
+        display: inline-block;
+        position: relative;
+        font-size: 1.1em;
+        margin: 0.3em 0;
+        color: #000;
+        text-decoration: none;
+        text-indent: 1.2em;
+    }
+
+    .menuChange ul li a:hover {
+        color: #EF5F21;
+    }
+</style>

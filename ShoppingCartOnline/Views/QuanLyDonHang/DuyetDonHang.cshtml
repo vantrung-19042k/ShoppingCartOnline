@@ -1,0 +1,130 @@
+﻿@using ShoppingCartOnline.Models;
+@model DonDatHang
+
+@{
+    ViewBag.Title = "DuyetDonHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+@{ 
+    IEnumerable<ChiTietDonDatHang> lstChiTietDonHang = ViewBag.ListChiTietDonHang as IEnumerable<ChiTietDonDatHang>;
+}
+
+<h2>Duyệt đơn hàng</h2>
+<br /><br />
+
+@using (Html.BeginForm())
+{
+    <div class="table ChiTietDonHang">
+        @*Phần thông tin của đơn hàng*@
+        <table class="table divTable" id="tableIn">
+            <tbody>
+                <tr>
+                    <td colspan="4">
+                        <table style="width:100%" class="divTable">
+                            <tbody>
+                                <tr>
+                                    <td>Mã đơn hàng: @Model.MaDDH @Html.Hidden("MaDDH", Model.MaDDH)</td>
+                                    <td>Mã khách hàng: @Model.KhachHang.MaKH</td>
+                                    <td>Tên khách hàng: @Model.KhachHang.TenKH</td>
+                                    <td>Ngày đặt: @Model.NgayDat.Value.ToString("dd/MM/yyyy")</td>
+                                    <td>Đã thanh toán: @Html.EditorFor(model => model.DaThanhToan)</td>
+                                    <td>Đã giao: @Html.EditorFor(model => model.TinhTrangGiaoHang)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                @*Thông tin chi tiết*@
+                <tr>
+                    <td>Sản phẩm</td>
+                    <td>Hình ảnh</td>
+                    <td>Số lượng</td>
+                    <td>Đơn giá đặt</td>
+                </tr>
+
+
+                @foreach (var item in lstChiTietDonHang)
+                {
+                    <tr>
+                        <td>@item.SanPham.TenSP</td>
+                        <td><img width="150" height="150" src="@Url.Content("~/Content/images/SanPham/" + item.SanPham.HinhAnh)" /></td>
+                        <td>@item.SoLuong</td>
+                        <td>@item.DonGia</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td align="right" colspan="4">Tổng số lượng: @Model.ChiTietDonDatHangs.Sum(n => n.SoLuong) sản phẩm</td>
+                </tr>
+                <tr>
+                    <td align="right" colspan="4">Tổng tiền: @Model.ChiTietDonDatHangs.Sum(n => n.SanPham.DonGia).Value.ToString("#,##") đồng</td>
+                </tr>
+            </tbody>
+           
+        </table>       
+        <br /><br />
+
+        <input class="btn btn-info" type="button" value="In đơn hàng" id="btnInDonHang" />
+        <input class="btn btn-success" type="submit" value="Lưu đơn hàng" id="btnLuuDonHang" />
+    </div>
+}
+
+<style>
+    .divTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1em;
+        font-family: sans-serif;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .divTable thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .divTable th,
+    .divTable td {
+        padding: 12px 15px;
+    }
+
+    .divTable tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .divTable tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .divTable tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .divTable tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+</style>
+
+<script>
+    $("#btnInDonHang").click(function () {        
+        var content = "<table>" + $("#tableIn").html() + "</table>";
+        InDonHang(content);
+    });
+
+
+    function InDonHang(content) {
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('<html><head><title>In đơn hàng</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+
+    }
+</script>

@@ -1,0 +1,62 @@
+﻿@using ShoppingCartOnline.Models
+@model IEnumerable<SanPham>
+
+<div class="content-top-bottom">
+    <h2>Phụ kiện mới</h2>
+    <div class="col-md-6 men">
+        <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+            <img style="width: 100%" class="img-responsive" src="@Url.Content("~/Content/images/SanPham/" + Model.ElementAt(0).HinhAnh)" alt="hình ảnh">
+            <div class="b-wrapper">
+                <h3 class="b-animate b-from-top top-in   b-delay03 ">
+                    <span>Mô tả ...</span>
+                </h3>
+            </div>
+        </a>
+        <h3><a href="single.html">@Model.ElementAt(0).TenSP</a></h3>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md1 ">
+            <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+                <img style="width: 100%" class="img-responsive" src="@Url.Content("~/Content/images/SanPham/" + Model.ElementAt(2).HinhAnh)" alt="Hình ảnh">
+                <div class="b-wrapper">
+                    <h3 class="b-animate b-from-top top-in1   b-delay03 ">
+                        <span>Mô tả ...</span>
+                    </h3>
+                </div>
+            </a>
+            <h4><a href="single.html">@Model.ElementAt(2).TenSP</a></h4>
+        </div>
+        
+
+        <div class="col-md2">
+            <div class="col-md-6 men1">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+                    <img style="width: 100%" class="img-responsive" src="@Url.Content("~/Content/images/SanPham/" + Model.ElementAt(1).HinhAnh)" alt="Hình ảnh">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-top top-in2   b-delay03 ">
+                            <span>Mô tả ...</span>
+                        </h3>
+                    </div>
+                </a>
+                <h4><a href="single.html">@Model.ElementAt(1).TenSP</a></h4>
+            </div>
+            
+
+            <div class="col-md-6 men2">
+                <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+                    <img style="width: 100%" class="img-responsive" src="@Url.Content("~/Content/images/SanPham/" + Model.ElementAt(1).HinhAnh)" alt="Hình ảnh">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-top top-in2   b-delay03 ">
+                            <span>Mô tả ...</span>
+                        </h3>
+                    </div>
+                </a>
+                <h4><a href="single.html">@Model.ElementAt(0).TenSP</a></h4>
+            </div>
+            
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

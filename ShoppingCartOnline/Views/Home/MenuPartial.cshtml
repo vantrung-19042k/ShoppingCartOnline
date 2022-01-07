@@ -1,0 +1,39 @@
+﻿@using ShoppingCartOnline.Models;
+@model IEnumerable<SanPham>
+
+<div class=" h_menu4">
+    <ul class="memenu skyblue">
+        <li class="showhide" style="display: list-item;"><span class="title">MENU</span><span class="icon1"></span><span class="icon2"></span></li>
+        <li class="active grid" style="display: none;"><a class="color8" href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+
+        @foreach (var groupItem in Model.GroupBy(n => n.LoaiSanPham))
+        {
+            if(groupItem.Key != null)
+            {
+            <li style="display: none;">
+                <a class="color1" href="#">@groupItem.Key.TenLoai</a>
+                <div class="mepanel">
+                    <div class="row">
+                        <div class="col1">
+                            <div class="h_nav">
+                                <ul>
+                                    @foreach (var item in Model.GroupBy(n => n.NhaSanXuat))
+                                    {
+                                        if (item.Key.MaNSX != null)
+                                        {
+                                            <li><a style="text-decoration:none; font-size:17px;" href="@Url.Action("SanPham", "SanPham", new {@MaLoaiSP=groupItem.Key.MaLoaiSP, @MaNSX=item.Key.MaNSX })">@item.Key.TenNSX</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            }
+        }
+
+        <li style="display: none;"><a class="color4" href="#">Giới thiệu</a></li>
+        <li style="display: none;"><a class="color6" href="#">Liên hệ</a></li>
+    </ul>
+</div>

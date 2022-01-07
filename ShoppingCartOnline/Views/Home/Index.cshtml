@@ -1,0 +1,47 @@
+﻿@using ShoppingCartOnline.Models
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+@{
+    IEnumerable<SanPham> lstSneakerNew = (IEnumerable<SanPham>)ViewBag.listSneakerNew;
+    IEnumerable<SanPham> lstQuanAoNew = (IEnumerable<SanPham>)ViewBag.listQuanAoNew;
+    IEnumerable<SanPham> lstPhuKienNew = (IEnumerable<SanPham>)ViewBag.listPhuKienNew;
+}
+
+@*Bước 1: tách code và lồng partial view*@
+@*Bước 2: Gán dữ liệu từ controller thông qua viewbag vào partial view*@
+
+<div class="content-top">
+
+    @**Giày sneaker*@
+    <div class="grid-in">
+        <div class="container">
+            @Html.Partial("~/Views/SanPham/SanPhamStyle1Partial.cshtml", lstSneakerNew)
+        </div>
+    </div>
+
+
+
+    @*Quần áo*@
+    <div class="grid-in">
+        <div class="container">
+            @Html.Partial("~/Views/SanPham/SanPhamStyle1Partial.cshtml", lstQuanAoNew)
+        </div>
+    </div>
+
+    @*Phụ kiện*@
+    @*<div class="grid-in">
+            <div class="container">
+                @Html.Partial("~/Views/SanPham/SanPhamStyle2Partial.cshtml", lstPhuKienNew)
+            </div>
+        </div>*@
+    <div class="grid-in">
+        <div class="container">
+            @Html.Partial("~/Views/SanPham/SanPhamStyle1Partial.cshtml", lstPhuKienNew)
+        </div>
+    </div>
+</div>

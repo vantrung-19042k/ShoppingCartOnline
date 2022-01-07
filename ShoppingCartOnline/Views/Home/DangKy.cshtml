@@ -1,0 +1,67 @@
+﻿@using ShoppingCartOnline.Models;
+@model ThanhVien
+
+@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+<div class=" container">
+    <div class=" register">
+        <h2 class="text-center">Đăng ký thành viên</h2>
+        <br />
+        @using (Html.BeginForm())
+        {
+        <div class="col-md-4 register-top-grid">
+            <div>
+                <span>Tài khoản</span>
+                @Html.TextBox("TaiKhoan")
+            </div>
+            <div>
+                <span>Họ tên</span>
+                @Html.TextBox("HoTen")
+            </div>
+            <div>
+                <span>Địa chỉ</span>
+                @Html.TextBox("DiaChi")
+            </div>
+            <div>
+                <span>Email</span>
+                @Html.TextBox("Email")
+            </div>
+            <div>
+                <span>Điện thoại</span>
+                @Html.TextBox("SoDienThoai")
+            </div>
+            @*<div>
+                <span>Câu hỏi bí mật</span>
+                @Html.DropDownList("CauHoi")
+            </div>*@
+            @*<a class="news-letter" href="#">
+            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
+        </a>*@
+        </div>
+            <div class="col-md-4 register-bottom-grid">
+                <div>
+                    <span>Mật khẩu</span>
+                    @Html.Password("MatKhau")
+                </div>
+                <div>
+                    <span>Nhập lại mật khẩu</span>
+                    @Html.Password("NhapLaiMatKhau")
+                </div>
+                <div>
+                    @Html.Captcha(5)
+                </div>
+                <br />
+                <input type="submit" value="Đăng Ký" />
+
+            </div>
+            <div class="clearfix"> </div>
+        }
+    </div>
+</div>
+<h1 style="color:red;">@ViewBag.ThongBao</h1>

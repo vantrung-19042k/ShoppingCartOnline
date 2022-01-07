@@ -1,0 +1,52 @@
+﻿@using ShoppingCartOnline.Models;
+@model IEnumerable<DonDatHang>
+
+@{
+    ViewBag.Title = "ChuaGiao";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    //khởi tạo controll WebGrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 20);
+}
+
+<h2>Danh sách đơn hàng chưa giao</h2>
+<br />
+
+@*Dùng boostrap tạo một tab control liên kết với view khác*@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" href="@Url.Action("ChuaThanhToan", "QuanLyDonHang")">Chưa Thanh Toán</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="@Url.Action("ChuaGiao", "QuanLyDonHang")">Chưa Giao</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="@Url.Action("DaGiaoDaThanhToan", "QuanLyDonHang")">Đã Giao Đã Thanh Toán</a>
+    </li>
+</ul>
+<br />
+
+@*Show dữ liệu thông qua controll WebGrid*@
+@grid.GetHtml(
+    tableStyle: "divTable", //divTable là tên class có thể thay đổi tương tự với các tham số khác
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+    grid.Column("MaDDH", header: "Mã đơn hàng"),
+    grid.Column("MaKH", header: "Họ tên KH", format: p => p.MaKH != null ? p.KhachHang.TenKH : ""),
+    grid.Column("NgayDat", header: "Ngày đặt"),
+    grid.Column("TinhTrangGiaoHang", header: "Tình trạng giao hàng"),
+    grid.Column("NgayGiao", header: "Ngày giao"),
+    grid.Column("DaThanhToan", header: "Đã thanh toán"),
+    grid.Column("UuDai", header: "Ưu đãi"),
+    grid.Column(format: p =>@Html.ActionLink("Duyệt đơn hàng", "DuyetDonHang", new {id=p.MaDDH}))
+))
+
+
+@*Table có thể CSS**@
+<style>
+    .divTable {
+        width: 100%;
+    }
+</style>

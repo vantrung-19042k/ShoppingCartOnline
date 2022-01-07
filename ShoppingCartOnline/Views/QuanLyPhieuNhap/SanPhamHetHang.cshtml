@@ -1,0 +1,35 @@
+﻿@using ShoppingCartOnline.Models;
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "SanPhamHetHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 20);
+}
+
+<h2>Thông tin các sản phẩm sắp hết hàng</h2>
+<br />
+
+@*Show dữ liệu thông qua controll WebGrid*@
+@grid.GetHtml(
+    tableStyle: "divTable", //divTable là tên class có thể thay đổi tương tự với các tham số khác
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+    grid.Column("MaSP", "Mã sản phẩm"),
+    grid.Column("TenSP", "Tên sản phẩm"),
+    grid.Column("DonGia", "Đơn giá"),
+    grid.Column("HinhAnh", "Hình ảnh", format: p=>@Html.Raw("<img width='100px' height='100px' src=\"../Content/images/SanPham/" + p.HinhAnh + "\"/>")),
+    grid.Column("SoLuongTon", "Số lượng tồn"),
+    grid.Column(format: p =>@Html.ActionLink("Nhập hàng", "NhapHangDon", new {id=p.MaSP}, new {@target="_blank"}))
+
+))
+
+@*Table có thể CSS**@
+<style>
+    .divTable {
+        width: 100%;
+    }
+</style>

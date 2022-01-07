@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>New Store A Ecommerce Category Flat Bootstarp Resposive Website Template | Products :: w3layouts</title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'><!--//fonts-->
+    <!-- start menu -->
+    <link href="~/Content/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Content/js/memenu.js"></script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+    <script src="~/Content/js/simpleCart.min.js"></script>
+    <!-- Ajax script -->
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        @Html.Partial("~/Views/Layout/HeaderTopPartial.cshtml")      
+        <div class="container">
+            <div class="head-top">
+                <div class="logo">
+                    <a href="@Url.Action("Index", "Home")"><img src="~/Content/images/logo.png" alt=""></a>
+                </div>
+                @Html.Action("MenuPartial", "Home")
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--content-->
+    <!---->
+    <div class="product">
+        <div class="container">
+            <div class="col-md-3 product-price">
+
+                <div class=" rsidebar span_1_of_left">
+                    <div class="of-left">
+                        <h3 class="cate">Loại sản phẩm</h3>
+                    </div>
+                    @Html.Action("LoaiSanPhamPartial", "Home")
+                    @*<ul class="menu">
+                        <li class="item1">
+                            <a href="#">Men </a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="single.html">Cute Kittens </a></li>
+                                <li class="subitem2"><a href="single.html">Strange Stuff </a></li>
+                                <li class="subitem3"><a href="single.html">Automatic Fails </a></li>
+                            </ul>
+                        </li>
+                        <li class="item2">
+                            <a href="#">Women </a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="single.html">Cute Kittens </a></li>
+                                <li class="subitem2"><a href="single.html">Strange Stuff </a></li>
+                                <li class="subitem3"><a href="single.html">Automatic Fails </a></li>
+                            </ul>
+                        </li>
+                        <li class="item3">
+                            <a href="#">Kids</a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="single.html">Cute Kittens </a></li>
+                                <li class="subitem2"><a href="single.html">Strange Stuff </a></li>
+                                <li class="subitem3"><a href="single.html">Automatic Fails</a></li>
+                            </ul>
+                        </li>
+                        <li class="item4">
+                            <a href="#">Accesories</a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="single.html">Cute Kittens </a></li>
+                                <li class="subitem2"><a href="single.html">Strange Stuff </a></li>
+                                <li class="subitem3"><a href="single.html">Automatic Fails</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="item4">
+                            <a href="#">Shoes</a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
+                                <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
+                                <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
+                            </ul>
+                        </li>
+                    </ul>*@
+                </div>
+                <!--initiate accordion-->
+                <script type="text/javascript">
+                    $(function () {
+                        var menu_ul = $('.menu > li > ul'),
+                            menu_a = $('.menu > li > a');
+                        menu_ul.hide();
+                        menu_a.click(function (e) {
+                            e.preventDefault();
+                            if (!$(this).hasClass('active')) {
+                                menu_a.removeClass('active');
+                                menu_ul.filter(':visible').slideUp('normal');
+                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                            } else {
+                                $(this).removeClass('active');
+                                $(this).next().stop(true, true).slideUp('normal');
+                            }
+                        });
+
+                    });
+                </script>
+                <!---->
+                <div class="product-middle">
+
+                    <div class="fit-top">
+                        <h6 class="shop-top">Lorem Ipsum</h6>
+                        <a href="@Url.Action("XemGioHang", "GioHang")" class="shop-now">Giỏ Hàng</a>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="sellers">
+                    <div class="of-left-in">
+                        <h3 class="tag">Tags</h3>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                            <li><a href="#">design</a></li>
+                            <li><a href="#">fashion</a></li>
+                            <li><a href="#">lorem</a></li>
+                            <li><a href="#">dress</a></li>
+                            <li><a href="#">fashion</a></li>
+                            <li><a href="#">dress</a></li>
+                            <li><a href="#">design</a></li>
+                            <li><a href="#">dress</a></li>
+                            <li><a href="#">design</a></li>
+                            <li><a href="#">fashion</a></li>
+                            <li><a href="#">lorem</a></li>
+                            <li><a href="#">dress</a></li>
+
+                            <div class="clearfix"> </div>
+                        </ul>
+
+                    </div>
+
+                </div>
+                <!---->
+               
+            </div>
+            @RenderBody()           
+            <div class="clearfix"> </div>
+            
+        </div>
+
+    </div>
+
+    <!---->
+    <!--//content-->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-top-at">
+
+                <div class="col-md-4 amet-sed">
+                    <h4>Giới thiệu</h4>
+                    <ul class="nav-bottom">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Địa chỉ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 amet-sed ">
+                    <h4>LIÊN HỆ</h4>
+
+                    <p>Thông tin liên hệ</p>
+                    <p>Phone: 0905340611</p>
+                    <ul class="social">
+                        <li><a href="https://www.facebook.com/vantrung.pv"><i></i></a></li>
+                        <li><a href="#"><i class="twitter"> </i></a></li>
+                        <li><a href="#"><i class="rss"> </i></a></li>
+                        <li><a href="#"><i class="gmail"> </i></a></li>
+
+                    </ul>
+                </div>
+                <div class="col-md-4 amet-sed">
+                    <h4>Thông Tin Thêm</h4>
+                    <p>
+                        Đăng ký để nhận thông tin mới nhất
+                    </p>
+                    <form>
+                        <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                        <input type="submit" value="Sign up">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="footer-class">
+            <p>This is a website demo | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> | Coding by <a href="https://www.facebook.com/vantrung.pv">Phan Văn Trung</a> </p>
+        </div>
+    </div>
+</body>
+</html>

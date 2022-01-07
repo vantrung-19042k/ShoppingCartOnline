@@ -1,0 +1,131 @@
+﻿@using ShoppingCartOnline.Models
+@model IEnumerable<ItemGioHang>
+
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+
+@if (Model.Count() == 0)
+{
+    <h2 class="text-center">Giỏ hàng rỗng</h2>
+}
+else
+{
+    <h2 class="text-center">Thông tin giỏ hàng</h2>
+    <br />
+
+    <div style="float: right">
+        <table class="table divTable">
+            <thead>
+                <tr>
+                    <td>Mã sản phẩm</td>
+                    <td>Tên sản phẩm</td>
+                    <td>Số lượng</td>
+                    <td>Hình ảnh</td>
+                    <td>Đơn giá</td>
+                    <td>Thành tiền</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaSP</td>
+                        <td>@item.TenSP</td>
+                        <td>@item.SoLuong</td>
+                        <td><img src="@Url.Content("~/Content/images/SanPham/" + item.HinhAnh)" width="120" height="120" /></td>
+                        <td>@item.DonGia.ToString("#,##") Đồng</td>
+                        <td>@item.ThanhTien.ToString("#,##") Đồng</td>
+                        <td>@Html.ActionLink("Sửa", "SuaGioHang", new { @MaSP = item.MaSP })</td>
+                        <td>@Html.ActionLink("Xóa", "XoaGioHang", new { @MaSP = item.MaSP })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="divDatHang" style="text-align: right;">
+            @using (Html.BeginForm("DatHang", "GioHang"))
+            {
+                if (Session["TaiKhoan"] == null)
+                {
+                    <div class="ThongTinMuaHang">
+                        <table align="center" class="table divTable">
+                            <thead>
+                                <tr>
+                                    <td align="center" colspan="2"><b>Thông tin khách hàng</b></td>
+                                </tr>     
+                            </thead>
+                            
+                            <tr>
+                                <td>Họ tên</td>
+                                <td>@Html.TextBox("TenKH")</td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ</td>
+                                <td>@Html.TextBox("DiaChi")</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>@Html.TextBox("Email")</td>
+                            </tr>
+                            <tr>
+                                <td>Điện thoại</td>
+                                <td>@Html.TextBox("SoDienThoai")</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>@Html.Hidden("MaThanhVien", 1)</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                }
+                <input class="btn btn-primary" type="submit" value="Đặt hàng" />
+                <button class="btn btn-success"><a style="text-decoration:none; color: white" href="@Url.Action("Index", "Home")">Mua tiếp</a></button>            
+            }
+        </div>
+    </div>
+
+}
+
+<style>
+    .divTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1em;
+        font-family: sans-serif;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+        .divTable thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .divTable th,
+        .divTable td {
+            padding: 12px 15px;
+        }
+
+        .divTable tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .divTable tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .divTable tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .divTable tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+</style>

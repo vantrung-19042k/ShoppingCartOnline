@@ -1,0 +1,62 @@
+﻿@using ShoppingCartOnline.Models;
+@model SanPham
+
+@{
+    ViewBag.Title = "NhapHangDon";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+@{
+    IEnumerable<NhaCungCap> lstNCC = ViewBag.ListNCC as IEnumerable<NhaCungCap>;
+    NhaSanXuat NSX = ViewBag.NhaSanXuat as NhaSanXuat;
+    LoaiSanPham LSP = ViewBag.LoaiSP as LoaiSanPham;
+
+}
+
+<h2>Nhập hàng cho sản phẩm @Model.TenSP</h2>
+<br />
+
+<div class="col-md-12">
+    <div class="col-md-3">
+        <img src="@Url.Content("~/Content/images/SanPham/" + Model.HinhAnh)" width="150" height="150" alt="" />
+    </div>
+    <div class="col-md-5">
+        <h3>Nhà sản xuất: @NSX.TenNSX</h3>
+        <h3>Loại sản phẩm: @LSP.TenLoai</h3>
+        <h3>Số lượng tồn: @Model.SoLuongTon</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<br />
+
+<h2>Thông tin nhập hàng</h2>
+<br />
+
+@using (Html.BeginForm("NhapHangDon", "QuanLyPhieuNhap", FormMethod.Post))
+{
+    @Html.Hidden("MaSP", Model.MaSP)
+    <table class="table">
+        <tr>
+            <td>Nhà cung cấp</td>
+            <td>Đơn giá nhập</td>
+            <td>Số lượng nhập</td>
+        </tr>
+        <tr>
+            <td>
+                <select class="" name="MaNCC">
+                    @foreach (var item in lstNCC)
+                    {
+                        <option value="@item.MaNCC">@item.TenNCC</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <input name="DonGiaNhap" class="txtDonGia" value="0" />
+            </td>
+            <td>
+                <input name="SoLuongNhap" class="txtSoLuong" value="0" />
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Nhập hàng" class="btn btn-primary" id="btnNhapHang" />
+}
